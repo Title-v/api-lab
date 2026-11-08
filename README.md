@@ -48,3 +48,13 @@ All names below are in `test_create_rating.py`. Error messages were observed wit
 | C3 does not exist | `test_nonexistent_pizza` |
 | C4 none | `test_invalid_token[none]` |
 | C4 wrong length | `test_invalid_token[short]` |
+
+## Results and report
+
+See `RESULTS.md` for observed responses, the defect report and reflection answers. `test_excluded_tools.py::test_all_tools_excluded_is_refused` is strict xfail for the confirmed all-tools-excluded defect. The final suite contains 33 cases: 32 passing cases and 1 expected failure while that defect remains.
+
+```sh
+pytest -v --html=report.html --self-contained-html
+```
+
+Open `report.html` in a browser. Short tracebacks avoid including authentication fixture values in published reports. The optional no-session demonstration was removed after three runs, as instructed. Each completed lab step has its own Git commit. Compared with the introductory snippets, successful create-rating tests also clean up their own ratings to respect the shared-site rule.
