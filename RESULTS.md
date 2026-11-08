@@ -30,3 +30,4 @@
 
 ## Step-by-step execution
 - Step 0.5: Python requests returned names: 200, application/json, dict, first name Americana; tools: 200, Knife/Pizza cutter/Scissors; vegetarian pizza: 200, The Nasty Fungi e Olive.
+- Step 0.6: Margherita passed; Pineapple Supreme failed with AssertionError; restored Margherita and confirmed 1 passed. Environment: Python 3.13.
