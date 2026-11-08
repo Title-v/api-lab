@@ -32,3 +32,19 @@ Base choice varies one characteristic at a time, keeping the others at their bas
 ## Shared-site rules
 
 Use fictional, unique users. Only create, modify or delete ratings owned by the current test. The public practice token is used only for the introductory tools/pizza requests, never for ratings writes. Ratings created by tests are cleaned up. Session cookies keep authenticated requests on the same backend. Run tests when needed, never in a repeated loop.
+
+### Block-to-test mapping (Step A2)
+
+All names below are in `test_create_rating.py`. Error messages were observed with curl before writing these assertions, using a fresh user's token and the same session cookies.
+
+| Characteristic / block | Test |
+| --- | --- |
+| All four base blocks (C1 in range, C2 integer, C3 exists, C4 own token) | `test_base_choice_is_saved` |
+| C1 below 1 | `test_stars_out_of_range[0]` |
+| C1 above 5 | `test_stars_out_of_range[6]` |
+| C2 decimal | `test_stars_wrong_type[decimal]` |
+| C2 text | `test_stars_wrong_type[text]` |
+| C2 missing | `test_missing_stars` |
+| C3 does not exist | `test_nonexistent_pizza` |
+| C4 none | `test_invalid_token[none]` |
+| C4 wrong length | `test_invalid_token[short]` |
