@@ -27,3 +27,6 @@
 6.
 7.
 8.
+
+## Step-by-step execution
+- Step 0.5: Python requests returned names: 200, application/json, dict, first name Americana; tools: 200, Knife/Pizza cutter/Scissors; vegetarian pizza: 200, The Nasty Fungi e Olive.
