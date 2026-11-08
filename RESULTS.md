@@ -6,14 +6,14 @@
 - Step 0.3, status code of the request without a token: 401; body: `{"error":"authentication failed"}`. With the public practice token in `auth.txt`, `GET /api/tools` returns 200 and `{"tools":["Knife","Pizza cutter","Scissors"]}`.
 - Step 0.4, the name of your pizza: The Funny Pugliese. Sent `curl -H "@auth.txt" -d "@veg.json" https://quickpizza.grafana.com/api/pizza` with `{"mustBeVegetarian": true}`. Response status: 200; every ingredient has `"vegetarian": true`.
 - Step 0.12, results of the three runs without a session (optional): failed (login 401), passed, failed (login 401). Removed the demonstration test afterwards.
-- Step 0.16, blocks of "how many of the three tools are excluded":
+- Step 0.16, blocks of "how many of the three tools are excluded": 0, 1, 2, or 3 distinct tools. The original two inputs both covered only the 1-tool block. Added [], [Knife, Scissors], and all three tools; only the all-three block failed.
 
 ## Defect report
-- Title:
-- Request:
-- Expected result:
-- Actual result:
-- Severity:
+- Title: Defect 1: excluding every tool causes an internal server error.
+- Request: POST /api/pizza with {"excludedTools": ["Knife", "Pizza cutter", "Scissors"]}; confirmed with `curl -H "@auth.txt" -d "@excluded_all.json" https://quickpizza.grafana.com/api/pizza`.
+- Expected result: 400 with a non-empty JSON error message explaining that no pizza satisfies the request.
+- Actual result: 500 with an empty body (0 bytes), reproduced with pytest and curl.
+- Severity: Medium: a validly formed but unsatisfiable restriction triggers a server error and gives clients no actionable explanation; no data loss was observed.
 
 ## Part A
 - Step A4, status codes when the other user reads, changes and deletes:
