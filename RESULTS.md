@@ -16,7 +16,7 @@
 - Severity: Medium: a validly formed but unsatisfiable restriction triggers a server error and gives clients no actionable explanation; no data loss was observed.
 
 ## Part A
-- Step A4, status codes when the other user reads, changes and deletes:
+- Step A4, status codes when the other user reads, changes and deletes: GET 404, PUT 400, DELETE 400. The owner could still read the full unchanged rating after every refused attempt. Full suite: 32 passed, 1 xfailed.
 
 ## Part B
 1.
