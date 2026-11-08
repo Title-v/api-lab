@@ -11,3 +11,26 @@ def test_create_rating(api, auth, pizza_id):
     finally:
         # Remove only the rating created by this test.
         api.delete(f"/api/ratings/{body['id']}", headers=auth)
+
+
+# A saved rating can be read back by its id.
+def test_read_rating(api, auth, rating):
+    res = api.get(f"/api/ratings/{rating['id']}", headers=auth)
+    assert res.status_code == 200
+    assert res.json() == rating
+
+
+# Changing the stars of a rating returns the new number of stars.
+def test_update_rating(api, auth, rating):
+    res = api.put(f"/api/ratings/{rating['id']}", json={"stars": 4}, headers=auth)
+    assert res.status_code == 200
+    assert res.json()["stars"] == 4
+
+
+# A deleted rating can no longer be read.
+def test_delete_rating(api, auth, rating):
+    path = f"/api/ratings/{rating['id']}"
+    res = api.delete(path, headers=auth)
+    assert res.status_code == 204
+    res = api.get(path, headers=auth)
+    assert res.status_code == 404
