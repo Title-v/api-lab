@@ -32,3 +32,8 @@
 - Step 0.5: Python requests returned names: 200, application/json, dict, first name Americana; tools: 200, Knife/Pizza cutter/Scissors; vegetarian pizza: 200, The Nasty Fungi e Olive.
 - Step 0.6: Margherita passed; Pineapple Supreme failed with AssertionError; restored Margherita and confirmed 1 passed. Environment: Python 3.13.
 - Step 0.9: Created a unique fictitious user (201), logged in (200), read own empty ratings (200, {"ratings": []}); session retained AWSALB and AWSALBCORS cookies. Private token was not saved.
+
+## Final verification
+- Command: `pytest -v --html=report.html --self-contained-html`.
+- Result on 9 November 2026 (Asia/Bangkok): 32 passed, 1 xfailed in 48.40 seconds; no unexpected failures or errors.
+- Opened the self-contained HTML report in a browser and verified its summary and the expected failure's 500-versus-400 assertion.
